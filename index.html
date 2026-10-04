@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>婚宴座位查詢系統</title>
+  <style>
+    :root {
+      --primary-color: #a35d6a;
+      --primary-light: #c28490;
+      --accent-color: #d4a373;
+      --card-bg: rgba(255, 255, 255, 0.88);
+      --text-main: #4a3e3d;
+      --text-muted: #7d6b6d;
+      --border-radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+      background: linear-gradient(135deg, #f5e6e8 0%, #e8d4d8 100%);
+      color: var(--text-main);
+      margin: 0;
+      padding: 25px 15px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 650px;
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 30px 22px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 10px 30px rgba(163, 93, 106, 0.18), 0 1px 3px rgba(0,0,0,0.05);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .header::after {
+      content: "✦ ✦ ✦";
+      display: block;
+      color: var(--primary-light);
+      font-size: 0.8rem;
+      letter-spacing: 6px;
+      margin-top: 8px;
+    }
+
+    .header h1 {
+      color: var(--primary-color);
+      font-size: 1.8rem;
+      margin: 0 0 6px 0;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    .header p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin: 0;
+    }
+
+    .search-box {
+      margin-bottom: 22px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 15px 18px;
+      font-size: 1rem;
+      border: 2px solid #ebd6d9;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.3s ease;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .search-input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 12px rgba(163, 93, 106, 0.25);
+    }
+
+    .section-title {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .table-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 25px;
+      max-height: 180px;
+      overflow-y: auto;
+      padding: 6px;
+      border-radius: 12px;
+      background: rgba(248, 236, 238, 0.6);
+    }
+
+    .table-buttons::-webkit-scrollbar {
+      width: 5px;
+    }
+    .table-buttons::-webkit-scrollbar-thumb {
+      background: var(--primary-light);
+      border-radius: 10px;
+    }
+
+    .btn-table {
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--primary-color);
+      border: 1px solid #e8cbcf;
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .btn-table:hover, .btn-table.active {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-color: var(--primary-color);
+      box-shadow: 0 4px 10px rgba(163, 93, 106, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .result-section {
+      border-top: 1px dashed #e3cbd0;
+      padding-top: 22px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #f0dfe2;
+      border-left: 5px solid var(--primary-color);
+      padding: 18px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 12px rgba(163, 93, 106, 0.08);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+    }
+
+    .card-no {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+      color: white;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      margin-right: 10px;
+      letter-spacing: 1px;
+    }
+
+    .member-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .member-tag {
+      background: #fdf8f9;
+      border: 1px solid #e8d8db;
+      padding: 6px 13px;
+      border-radius: 20px;
+      font-size: 0.92rem;
+      color: #555;
+    }
+
+    .member-tag.highlight {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+      color: #ffffff;
+      border-color: var(--primary-color);
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(163, 93, 106, 0.3);
+    }
+
+    .no-result {
+      text-align: center;
+      color: var(--text-muted);
+      padding: 35px 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>婚宴座位查詢系統</h1>
+    <p>歡迎蒞臨！請輸入姓名搜尋，或點選桌號查看</p>
+  </div>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" class="search-input" placeholder="請輸入您的姓名（例如：劉家源、魏莉珩）..." oninput="handleSearch()">
+  </div>
+
+  <div class="section-title">快速選擇桌號：</div>
+  <div class="table-buttons" id="tableButtons"></div>
+
+  <div class="result-section" id="resultContainer"></div>
+</div>
+
+<script>
+  // ================= 29桌完整賓客與桌次資料 =================
+  const guestData = [
+    { tableName: "田徑朋友", tableNo: "1-1", members: ["張偉銘", "黃俊勝", "劉家源", "劉羽哲", "林家顥", "周李擎", "周郁晏", "林庭瑋"] },
+    { tableName: "大學朋友", tableNo: "2-1", members: ["陳冠諺", "宋郁均", "林芝豪", "王約翰", "宋思賢", "陳冠綸", "蔡丞祐"] },
+    { tableName: "大學朋友", tableNo: "2-2", members: ["黃建綱", "張家陞", "魏小草", "鄧培昕", "李宗育", "翁偉誠"] },
+    { tableName: "媽媽親戚", tableNo: "3-1", members: ["大阿姨", "三阿姨", "四阿姨", "五阿姨"] },
+    { tableName: "廖家親戚", tableNo: "3-2", members: ["親戚", "力勳", "舅媽"] },
+    { tableName: "國小朋友", tableNo: "3-3", members: ["林瑞吉", "李永祥", "呂學智", "廖烜慶", "陳芃諭", "曾續觀", "劉芷彤"] },
+    { tableName: "高中老師", tableNo: "3-5", members: ["葉怡君", "林宥婷", "莊晴惠", "陳佳蓮", "FISH", "彭珊珊", "朱明芳", "鄭竹君"] },
+    { tableName: "田徑朋友", tableNo: "3-6", members: ["劉學康", "林辰洋", "黃平諺", "楊凱惟", "郭岳霖", "曾韋誠", "黃建成"] },
+    { tableName: "(男) 內小4", tableNo: "3-7", members: ["陳宏建", "林慶曉", "燕玉", "蕭蘊慧", "陳桂馨", "陳謙豪"] },
+    { tableName: "(男) 內小5", tableNo: "3-8", members: ["容暢家", "宋心柔(可芸)", "李怡君(艾倪)"] },
+    { tableName: "男方親戚", tableNo: "5-1", members: ["月溶", "瑋瑋", "秋秋", "佳靜", "秀曼"] },
+    { tableName: "爸爸朋友", tableNo: "5-2", members: ["李慶源", "廖英利", "李謀瑀", "張余美珠"] },
+    { tableName: "田徑教練", tableNo: "5-3", members: ["鄔惟喬", "翁竹毅", "張倩菱", "邱為榮", "張浩桂", "潘瑞根", "林芝羽", "詹傳幃"] },
+    { tableName: "(男) 內小1", tableNo: "5-5", members: ["朱怡珊", "小留哥", "林爸", "大哥", "于老師", "許顯銘", "邱奕帆", "盧宗德"] },
+    { tableName: "(男) 內小2", tableNo: "5-6", members: ["許璋銜", "劉彥宏", "賴協軍", "陳盈璋", "黃至德"] },
+    { tableName: "(男) 內小3", tableNo: "5-7", members: ["魏莉珩", "温雅玲", "姚良澤", "蕭若妍", "張嘉漢"] },
+    { tableName: "蔡氏家族1", tableNo: "6-1", members: ["大伯母", "二伯母", "大姑姑", "二姑姑", "三姑姑", "小姑姑"] },
+    { tableName: "李氏家族", tableNo: "6-2", members: ["大舅媽", "小舅", "惠美姨", "謝慈容", "林正東"] },
+    { tableName: "蔡氏家族2", tableNo: "6-3", members: ["三伯父", "小叔叔", "陳嘉興", "陳信价"] },
+    { tableName: "詩涵同學", tableNo: "6-5", members: ["林昱君", "楊雅菁", "劉迦恩", "李姿學", "曾湘芩", "高毓翎（綠豬）", "陳宥瑾", "周鈺庭", "陳佳澤"] },
+    { tableName: "(女) 內小4", tableNo: "6-6", members: ["文鴻", "士淵", "仁傑", "竣瑋", "可豪", "蔡沅蓓", "亦辰"] },
+    { tableName: "(女) 內小1", tableNo: "6-7", members: ["楊立銘(芝瑄)", "郁玹", "李沛穎(哲安)", "郭家卉(亭瑀)"] },
+    { tableName: "蔡氏家族3", tableNo: "7-1", members: ["蔡秉諺", "郭潔蓮"] },
+    { tableName: "蔡氏家族6", tableNo: "7-2", members: ["林意萍", "林佳慧", "林佳伶", "洪靜馨"] },
+    { tableName: "媽媽同事", tableNo: "7-3", members: ["吳建村", "鄭斯仲", "陳慧伶", "林日紹", "王清銀", "謝德隆"] },
+    { tableName: "蔡氏家族4", tableNo: "7-5", members: ["蔡佩珊", "郭振宇", "陳春模", "李昀儒媽媽", "蔡斯恩"] },
+    { tableName: "蔡氏家族5", tableNo: "7-6", members: ["莊欣昌", "莊欣怡", "蔡秉璜"] },
+    { tableName: "(女) 內小2", tableNo: "7-7", members: ["美惠", "淑意", "語潔", "虹妧", "欣蕙", "于婷", "麗宜"] },
+    { tableName: "(女) 內小3", tableNo: "7-8", members: ["珊虹", "怡今", "采恩", "亭均", "珠惠主任", "慧蓮老師", "麗小Ms.Lai", "Ruby", "Chad"] }
+  ];
+  // ====================================================
+
+  const searchInput = document.getElementById('searchInput');
+  const tableButtons = document.getElementById('tableButtons');
+  const resultContainer = document.getElementById('resultContainer');
+
+  // 初始化桌號按鈕
+  function initButtons() {
+    tableButtons.innerHTML = '';
+    guestData.forEach(table => {
+      const btn = document.createElement('button');
+      btn.className = 'btn-table';
+      btn.innerText = `${table.tableNo} ${table.tableName}`;
+      btn.onclick = () => {
+        searchInput.value = '';
+        renderTable(table.tableNo);
+        setActiveButton(btn);
+      };
+      tableButtons.appendChild(btn);
+    });
+  }
+
+  function setActiveButton(targetBtn) {
+    document.querySelectorAll('.btn-table').forEach(b => b.classList.remove('active'));
+    if (targetBtn) targetBtn.classList.add('active');
+  }
+
+  // 渲染指定桌號
+  function renderTable(tableNo) {
+    const table = guestData.find(t => t.tableNo === tableNo);
+    if (!table) return;
+
+    resultContainer.innerHTML = `
+      <div class="card">
+        <div class="card-title">
+          <span class="card-no">${table.tableNo}</span>
+          <span>${table.tableName}</span>
+        </div>
+        <div class="member-list">
+          ${table.members.map(m => `<span class="member-tag">${m}</span>`).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  // 搜尋處理
+  function handleSearch() {
+    const keyword = searchInput.value.trim().toLowerCase();
+    setActiveButton(null);
+
+    if (!keyword) {
+      resultContainer.innerHTML = '<div class="no-result">請輸入姓名關鍵字，或點擊上方桌號按鈕進行查詢</div>';
+      return;
+    }
+
+    const matchedTables = [];
+
+    guestData.forEach(table => {
+      const matchedMembers = table.members.filter(m => m.toLowerCase().includes(keyword));
+      if (matchedMembers.length > 0) {
+        matchedTables.push({
+          ...table,
+          matchedMembers
+        });
+      }
+    });
+
+    if (matchedTables.length === 0) {
+      resultContainer.innerHTML = '<div class="no-result">查無此賓客資料，請確認輸入姓名是否正確。<br>（若有疑慮可洽現場招待人員）</div>';
+      return;
+    }
+
+    resultContainer.innerHTML = matchedTables.map(table => `
+      <div class="card">
+        <div class="card-title">
+          <span class="card-no">${table.tableNo}</span>
+          <span>${table.tableName}</span>
+        </div>
+        <div class="member-list">
+          ${table.members.map(m => {
+            const isMatch = m.toLowerCase().includes(keyword);
+            return `<span class="member-tag ${isMatch ? 'highlight' : ''}">${m}</span>`;
+          }).join('')}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // 初始化
+  initButtons();
+  resultContainer.innerHTML = '<div class="no-result">請輸入姓名關鍵字，或點擊上方桌號按鈕進行查詢</div>';
+</script>
+
+</body>
+</html>
