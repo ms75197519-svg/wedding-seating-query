@@ -75,16 +75,8 @@
       height: 340px;
       border-radius: 20px;
       overflow: hidden;
-      background-color: #efe2d3;
-      background-image:
-        linear-gradient(180deg, rgba(30, 22, 22, 0.06), rgba(20, 14, 15, 0.12)),
-        url('https://drive.google.com/uc?export=view&id=1NZyVU3Ql3jeJL6SGP1q92ZAszqr1eY01');
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      box-shadow: 
-        0 18px 28px rgba(76,58,55,0.12),
-        inset 0 1px 0 rgba(255,255,255,0.4);
+      background: linear-gradient(180deg, #f0d6a8 0%, #d7e6eb 45%, #bfe4dd 100%);
+      box-shadow: 0 18px 28px rgba(76,58,55,0.12), inset 0 1px 0 rgba(255,255,255,0.4);
       border: 1px solid rgba(255,255,255,0.7);
     }
 
@@ -92,16 +84,26 @@
       content: "";
       position: absolute;
       inset: 0;
-      border-radius: 20px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(20,18,18,0.10));
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(20,18,18,0.08));
+      z-index: 6;
       pointer-events: none;
     }
 
     .photo-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0), rgba(0,0,0,0.12));
+      background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0), rgba(0,0,0,0.1));
+      z-index: 5;
       border-radius: 20px;
+    }
+
+    .wedding-art {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 1;
     }
 
     .couple-names {
@@ -110,7 +112,7 @@
       left: 0;
       right: 0;
       text-align: center;
-      z-index: 2;
+      z-index: 10;
     }
 
     .couple-names-text {
@@ -374,6 +376,152 @@
     <div class="content">
       <div class="photo-section">
         <div class="photo-banner" aria-label="婚宴照片">
+          <svg class="wedding-art" viewBox="0 0 900 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true" role="img">
+            <defs>
+              <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#fce6b4"/>
+                <stop offset="38%" stop-color="#f3d39a"/>
+                <stop offset="68%" stop-color="#cce4df"/>
+                <stop offset="100%" stop-color="#a8d1d6"/>
+              </linearGradient>
+              <linearGradient id="sea" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#a3d2d8"/>
+                <stop offset="100%" stop-color="#7cb8c0"/>
+              </linearGradient>
+              <linearGradient id="sand" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#efcb8c"/>
+                <stop offset="100%" stop-color="#d9a96d"/>
+              </linearGradient>
+            </defs>
+
+            <rect width="900" height="560" fill="url(#sky)"/>
+            <circle cx="690" cy="95" r="52" fill="#ffe3a1" opacity="0.86"/>
+            <g opacity="0.28" fill="#f8f0de">
+              <ellipse cx="120" cy="78" rx="140" ry="28"/>
+              <ellipse cx="360" cy="68" rx="150" ry="30"/>
+              <ellipse cx="650" cy="80" rx="200" ry="35"/>
+              <ellipse cx="760" cy="120" rx="110" ry="22"/>
+            </g>
+
+            <path d="M0 245 C150 215, 250 260, 400 240 S680 220, 900 245 L900 520 L0 520 Z" fill="url(#sea)" opacity="0.96"/>
+            <path d="M0 268 C150 238, 250 282, 400 265 S680 248, 900 280" stroke="#dfeee4" stroke-width="3" fill="none" opacity="0.85"/>
+            <path d="M0 298 C130 282, 260 308, 398 292 S680 300, 900 320" stroke="#dfeee4" stroke-width="3" fill="none" opacity="0.7"/>
+            <path d="M0 328 C120 315, 240 340, 390 325 S683 330, 900 350" stroke="#dfeee4" stroke-width="3" fill="none" opacity="0.7"/>
+
+            <g fill="#9b8d78" opacity="0.7">
+              <path d="M68 170 L84 170 L84 186 L68 186 Z"/>
+              <path d="M126 178 L148 178 L148 194 L126 194 Z"/>
+              <path d="M700 175 L728 175 L728 192 L700 192 Z"/>
+              <path d="M760 190 L790 190 L790 208 L760 208 Z"/>
+            </g>
+
+            <g opacity="0.82">
+              <path d="M90 170 L92 150 L110 150 L112 170 Z" fill="#4a6a72"/>
+              <path d="M76 148 L72 138 L118 138 L120 148 Z" fill="#4b6d7a"/>
+              <path d="M78 148 L70 170 L120 170 L128 148 Z" fill="#6c8d95"/>
+              <g fill="#f0e6d1">
+                <path d="M84 154 L94 154 L92 160 L86 160 Z"/>
+                <path d="M98 154 L108 154 L106 160 L100 160 Z"/>
+              </g>
+            </g>
+
+            <g>
+              <path d="M0 400 C120 370, 260 420, 370 405 S640 380, 900 420 L900 560 L0 560 Z" fill="url(#sand)"/>
+            </g>
+
+            <g opacity="0.18">
+              <path d="M20 438 C90 420, 170 450, 248 432 S390 420, 470 445 S648 456, 752 435" stroke="#7a5c3d" stroke-width="8" fill="none"/>
+              <path d="M120 470 C210 452, 292 474, 372 462 S538 452, 645 474" stroke="#7a5c3d" stroke-width="7" fill="none"/>
+            </g>
+
+            <g transform="translate(450 155)">
+              <path d="M0 74 C23 50, 45 34, 62 22 C70 14, 76 8, 80 0 C84 8, 88 14, 97 22 C120 34, 140 49, 160 74" fill="#f0c557" stroke="#d6a738" stroke-width="5"/>
+              <path d="M80 30 C90 38, 96 52, 96 66 C96 76, 92 88, 80 96 C68 88, 64 76, 64 66 C64 52, 70 38, 80 30" fill="#f8d867"/>
+              <path d="M82 14 L86 30" stroke="#b17e2d" stroke-width="6" stroke-linecap="round"/>
+              <circle cx="82" cy="98" r="9" fill="#f0c557" stroke="#d4a43a" stroke-width="4"/>
+              <path d="M86 98 L118 98" stroke="#bf8c23" stroke-width="8" stroke-linecap="round"/>
+              <path d="M118 98 L146 115" stroke="#bf8c23" stroke-width="8" stroke-linecap="round"/>
+              <path d="M118 98 L150 88" stroke="#bf8c23" stroke-width="8" stroke-linecap="round"/>
+              <path d="M82 98 L56 118" stroke="#bf8c23" stroke-width="8" stroke-linecap="round"/>
+              <circle cx="161" cy="118" r="14" fill="#e8bd46" stroke="#d19d35" stroke-width="4"/>
+            </g>
+
+            <g transform="translate(255 220)">
+              <g transform="translate(0 0)">
+                <ellipse cx="95" cy="124" rx="40" ry="48" fill="#e6c7a6"/>
+                <path d="M54 132 C58 96, 77 76, 95 76 C113 76, 130 98, 136 132 L54 132 Z" fill="#6d4f3b"/>
+                <path d="M62 84 C70 60, 86 45, 95 45 C105 45, 120 60, 128 84" fill="#f6e5d8" stroke="#d9c3b3" stroke-width="5"/>
+                <path d="M58 122 L85 130 L118 122" fill="none" stroke="#cba38b" stroke-width="4" stroke-linecap="round"/>
+                <path d="M70 152 L48 204" stroke="#4f3d34" stroke-width="12" stroke-linecap="round"/>
+                <path d="M118 152 L152 210" stroke="#4f3d34" stroke-width="12" stroke-linecap="round"/>
+                <path d="M72 150 L58 205" stroke="#4f3d34" stroke-width="10" stroke-linecap="round"/>
+                <path d="M118 148 L135 205" stroke="#4f3d34" stroke-width="10" stroke-linecap="round"/>
+                <path d="M96 147 L104 210" stroke="#4f3d34" stroke-width="10" stroke-linecap="round"/>
+                <path d="M41 206 L104 206" stroke="#6d4f3b" stroke-width="15" stroke-linecap="round"/>
+                <path d="M103 206 L175 206" stroke="#6d4f3b" stroke-width="15" stroke-linecap="round"/>
+                <path d="M148 196 L200 210" stroke="#4f3d34" stroke-width="10" stroke-linecap="round"/>
+                <path d="M38 196 L12 210" stroke="#4f3d34" stroke-width="10" stroke-linecap="round"/>
+                <path d="M123 206 L151 248" stroke="#4f3d34" stroke-width="9" stroke-linecap="round"/>
+                <path d="M50 206 L22 248" stroke="#4f3d34" stroke-width="9" stroke-linecap="round"/>
+                <path d="M31 250 L50 250 L50 287" stroke="#e8c6a8" stroke-width="10" stroke-linecap="round" fill="none"/>
+                <path d="M141 250 L160 250 L160 287" stroke="#e8c6a8" stroke-width="10" stroke-linecap="round" fill="none"/>
+                <path d="M54 286 L42 330" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
+                <path d="M150 286 L170 330" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
+                <path d="M43 332 L60 332 L55 355" stroke="#1b1b1d" stroke-width="7" stroke-linecap="round"/>
+                <path d="M167 332 L150 332 L157 355" stroke="#1b1b1d" stroke-width="7" stroke-linecap="round"/>
+              </g>
+
+              <g transform="translate(190 12)">
+                <ellipse cx="130" cy="122" rx="38" ry="48" fill="#f0d5ba"/>
+                <path d="M90 128 C96 90, 118 68, 130 68 C145 68, 162 92, 168 128 L90 128 Z" fill="#f7f2ef"/>
+                <path d="M86 128 L122 132 L153 122" fill="none" stroke="#dbb7a0" stroke-width="4" stroke-linecap="round"/>
+                <path d="M108 136 L127 172" stroke="#3b291f" stroke-width="11" stroke-linecap="round"/>
+                <path d="M154 134 L182 180" stroke="#3b291f" stroke-width="11" stroke-linecap="round"/>
+                <path d="M104 133 L88 205" stroke="#3b291f" stroke-width="10" stroke-linecap="round"/>
+                <path d="M128 178 L108 206" stroke="#3b291f" stroke-width="10" stroke-linecap="round"/>
+                <path d="M92 206 L104 242" stroke="#3b291f" stroke-width="9" stroke-linecap="round"/>
+                <path d="M183 180 L220 209" stroke="#3b291f" stroke-width="10" stroke-linecap="round"/>
+                <path d="M211 208 L228 252" stroke="#3b291f" stroke-width="9" stroke-linecap="round"/>
+                <path d="M92 205 L53 205" stroke="#3b291f" stroke-width="11" stroke-linecap="round"/>
+                <path d="M183 180 L215 180" stroke="#3b291f" stroke-width="11" stroke-linecap="round"/>
+                <path d="M92 205 L53 205" stroke="#2f2722" stroke-width="8" stroke-linecap="round"/>
+                <path d="M75 205 L48 266" stroke="#f7f2ef" stroke-width="11" stroke-linecap="round"/>
+                <path d="M188 206 L216 266" stroke="#f7f2ef" stroke-width="11" stroke-linecap="round"/>
+                <circle cx="116" cy="62" r="5" fill="#3e2f2d"/>
+                <path d="M110 48 C120 40, 134 40, 142 52" stroke="#3d2d2d" stroke-width="4" fill="none" stroke-linecap="round"/>
+                <path d="M92 78 C96 60, 112 47, 130 47 C150 47, 170 62, 176 84" stroke="#f3c5be" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.8"/>
+                <path d="M148 120 C146 88, 171 68, 192 66 C206 64, 222 70, 235 82" stroke="#f7d7d1" stroke-width="8" fill="none" stroke-linecap="round"/>
+                <path d="M198 82 C214 76, 225 84, 230 96 C232 106, 222 116, 209 120" stroke="#f7d7d1" stroke-width="8" fill="none" stroke-linecap="round"/>
+                <path d="M130 138 L165 151" stroke="#d7afb0" stroke-width="7" stroke-linecap="round"/>
+              </g>
+            </g>
+
+            <g transform="translate(225 280)">
+              <path d="M10 80 C26 26, 70 16, 108 26 C134 34, 150 52, 150 80 C150 92, 146 105, 138 116 C122 110, 108 108, 96 110 C75 114, 58 120, 42 118 C24 116, 10 104, 10 80 Z" fill="#f2f0eb" stroke="#e1d3c5" stroke-width="4"/>
+              <g fill="#d59a63">
+                <circle cx="38" cy="62" r="8"/>
+                <circle cx="60" cy="40" r="8"/>
+                <circle cx="82" cy="56" r="8"/>
+                <circle cx="108" cy="38" r="8"/>
+                <circle cx="130" cy="62" r="8"/>
+              </g>
+              <g fill="#f2b66d">
+                <circle cx="46" cy="46" r="7"/>
+                <circle cx="98" cy="52" r="7"/>
+                <circle cx="118" cy="76" r="7"/>
+              </g>
+              <g fill="#f0d39a">
+                <circle cx="76" cy="42" r="6"/>
+                <circle cx="88" cy="72" r="7"/>
+              </g>
+            </g>
+
+            <g transform="translate(710 230)">
+              <path d="M0 26 C18 0, 38 -8, 74 2 C113 12, 136 30, 144 64 C146 88, 129 108, 101 118 C75 128, 40 126, 16 108 C-10 90, -18 56, 0 26 Z" fill="#f6e37c" stroke="#d9b54a" stroke-width="6"/>
+              <path d="M44 24 C62 68, 50 110, 36 146" stroke="#d9b54a" stroke-width="6" fill="none"/>
+              <path d="M104 28 C88 74, 96 110, 110 146" stroke="#d9b54a" stroke-width="6" fill="none"/>
+            </g>
+          </svg>
           <div class="photo-overlay"></div>
           <div class="couple-names">
             <div class="couple-names-text">力賢 &amp; 詩涵</div>
@@ -422,7 +570,7 @@
       { tableName: "(男) 內小4", tableNo: "3-7", members: ["陳宏建", "林慶曉", "燕玉", "蕭蘊慧", "陳桂馨", "陳謙豪"] },
       { tableName: "(男) 內小5", tableNo: "3-8", members: ["容暢家", "宋心柔(可芸)", "李怡君(艾倪)"] },
       { tableName: "男方親戚", tableNo: "5-1", members: ["月溶", "瑋瑋", "秋秋", "佳靜", "秀曼"] },
-      { tableName: "爸爸朋���", tableNo: "5-2", members: ["李慶源", "廖英利", "李謀瑀", "張余美珠"] },
+      { tableName: "爸爸朋友", tableNo: "5-2", members: ["李慶源", "廖英利", "李謀瑀", "張余美珠"] },
       { tableName: "田徑教練", tableNo: "5-3", members: ["鄔惟喬", "翁竹毅", "張倩菱", "邱為榮", "張浩桂", "潘瑞根", "林芝羽", "詹傳幃"] },
       { tableName: "(男) 內小1", tableNo: "5-5", members: ["朱怡珊", "小留哥", "林爸", "大哥", "于老師", "許顯銘", "邱奕帆", "盧宗德"] },
       { tableName: "(男) 內小2", tableNo: "5-6", members: ["許璋銜", "劉彥宏", "賴協軍", "陳盈璋", "黃至德"] },
@@ -519,7 +667,7 @@
     }
 
     initButtons();
-    resultContainer.innerHTML = '<div class="empty">請輸入姓名關鍵字，或點擊上方桌號查看座位資訊。</div>';
+    resultContainer.innerHTML = '<div class="empty">請輸入姓名關鍵字，���點擊上方桌號查看座位資訊。</div>';
   </script>
 </body>
 </html>
