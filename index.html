@@ -3,22 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>婚宴座位查詢系統</title>
+  <title>婚宴座位查詢</title>
   <style>
     :root {
-      --rose-900: #7a4a52;
-      --rose-700: #9b5d67;
-      --rose-500: #c88d95;
-      --rose-300: #e9c6cb;
-      --rose-100: #f7ecec;
-      --gold-500: #cfa56a;
-      --gold-300: #e8d3a3;
-      --ink-900: #3f2f2f;
-      --ink-700: #5f4a4b;
-      --ink-500: #7d6d6f;
+      --ivory: #f8f5f2;
+      --ivory-strong: #efe7df;
+      --gold: #b99f6a;
+      --gold-soft: #d8c7a3;
+      --rose: #8c6a6b;
+      --rose-soft: #b8989b;
+      --ink: #3a2d2d;
+      --ink-soft: #6a5758;
+      --line: rgba(108, 86, 74, 0.18);
       --white: #ffffff;
-      --card: rgba(255,255,255,0.86);
-      --line: rgba(122,74,82,0.18);
+      --card: rgba(255, 255, 255, 0.8);
     }
 
     * { box-sizing: border-box; }
@@ -28,110 +26,117 @@
       min-height: 100%;
       font-family: "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
       background:
-        radial-gradient(circle at top, rgba(255,255,255,0.88), rgba(255,255,255,0.35) 35%, rgba(0,0,0,0) 60%),
-        linear-gradient(135deg, #f6eef0 0%, #efdbdf 30%, #f5e7e6 60%, #f3e5d9 100%);
-      color: var(--ink-900);
+        linear-gradient(135deg, rgba(255,255,255,0.76), rgba(255,255,255,0.28)),
+        linear-gradient(180deg, #f3eee9 0%, #efe6df 45%, #f6f0ec 100%);
+      color: var(--ink);
     }
 
     body {
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding: 28px 14px;
+      padding: 36px 14px;
     }
 
     .container {
       width: min(100%, 760px);
       background: var(--card);
-      border: 1px solid rgba(255,255,255,0.9);
-      border-radius: 28px;
-      box-shadow: 0 18px 42px rgba(106, 68, 75, 0.12), 0 4px 16px rgba(106, 68, 75, 0.08);
+      border: 1px solid rgba(255,255,255,0.85);
+      border-radius: 30px;
+      box-shadow: 0 20px 50px rgba(76, 58, 55, 0.12), 0 4px 18px rgba(76, 58, 55, 0.04);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       overflow: hidden;
       position: relative;
     }
 
-    .container::before,
-    .container::after {
+    .container::before {
       content: "";
       position: absolute;
-      inset: 0;
+      inset: 14px;
+      border: 1px solid rgba(185,159,106,0.34);
+      border-radius: 22px;
       pointer-events: none;
-      z-index: 0;
-    }
-
-    .container::before {
-      background:
-        radial-gradient(circle at 15% 15%, rgba(200,141,149,0.18), transparent 22%),
-        radial-gradient(circle at 75% 5%, rgba(207,165,106,0.14), transparent 18%),
-        radial-gradient(circle at 80% 80%, rgba(155,93,103,0.12), transparent 20%);
     }
 
     .content {
       position: relative;
       z-index: 1;
-      padding: 30px 22px 24px;
+      padding: 34px 26px 22px;
+    }
+
+    .topbar {
+      text-align: center;
+      margin-bottom: 18px;
+      color: var(--gold);
+      letter-spacing: 0.4em;
+      font-size: 0.72rem;
+      font-weight: 700;
     }
 
     .hero {
       text-align: center;
-      padding: 8px 0 18px;
-      border-bottom: 1px dashed var(--line);
+      padding: 8px 0 22px;
+      border-bottom: 1px solid var(--line);
       position: relative;
     }
 
-    .hero .ornament {
-      color: var(--rose-500);
-      letter-spacing: 10px;
-      font-size: 1.05rem;
-      margin-bottom: 10px;
-      display: block;
+    .hero::before,
+    .hero::after {
+      content: "❧";
+      position: absolute;
+      top: 10px;
+      color: var(--gold-soft);
+      font-size: 1.2rem;
     }
+
+    .hero::before { left: 12%; }
+    .hero::after { right: 12%; }
 
     .hero h1 {
       margin: 0;
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      line-height: 1.3;
-      letter-spacing: 0.08em;
+      font-family: "Georgia", "Times New Roman", serif;
+      font-size: clamp(2rem, 5vw, 3rem);
       font-weight: 700;
-      color: var(--rose-900);
+      letter-spacing: 0.08em;
+      color: var(--rose);
     }
 
-    .hero .sub {
+    .hero .subtitle {
       margin-top: 10px;
-      color: var(--ink-700);
-      font-size: 0.95rem;
-      letter-spacing: 0.12em;
+      color: var(--ink-soft);
+      letter-spacing: 0.18em;
+      font-size: 0.8rem;
+      font-weight: 600;
     }
 
     .search-wrap {
-      margin-top: 22px;
+      margin-top: 24px;
     }
 
     .search-input {
       width: 100%;
-      border: 1px solid rgba(154, 94, 102, 0.26);
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(140,106,107,0.18);
       border-radius: 999px;
-      background: rgba(255,255,255,0.8);
-      color: var(--ink-900);
-      padding: 16px 20px;
+      padding: 17px 20px;
+      color: var(--ink);
       font-size: 1rem;
       outline: none;
+      box-shadow: inset 0 1px 4px rgba(87,63,55,0.03);
       transition: all 0.2s ease;
-      box-shadow: inset 0 2px 6px rgba(122,74,82,0.04);
     }
 
     .search-input:focus {
-      border-color: var(--rose-700);
-      box-shadow: 0 0 0 4px rgba(184,128,138,0.12);
+      border-color: rgba(140,106,107,0.45);
+      box-shadow: 0 0 0 4px rgba(185,159,106,0.09);
     }
 
     .section-label {
-      margin: 22px 0 12px;
-      color: var(--ink-700);
-      letter-spacing: 0.12em;
-      font-size: 0.75rem;
+      margin: 24px 0 12px;
+      color: var(--ink-soft);
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
       font-weight: 700;
     }
 
@@ -139,11 +144,11 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      padding: 10px 8px 8px;
+      padding: 10px 8px;
       border-radius: 18px;
-      background: rgba(247,236,236,0.72);
-      border: 1px solid rgba(122,74,82,0.08);
-      max-height: 200px;
+      background: rgba(248,244,240,0.9);
+      border: 1px solid rgba(122, 87, 75, 0.08);
+      max-height: 210px;
       overflow-y: auto;
     }
 
@@ -152,18 +157,17 @@
     }
 
     .table-buttons::-webkit-scrollbar-thumb {
-      background: rgba(154,94,102,0.4);
-      border-radius: 99px;
+      background: rgba(185,159,106,0.5);
+      border-radius: 999px;
     }
 
     .btn-table {
-      appearance: none;
-      border: 1px solid rgba(154,94,102,0.2);
-      background: rgba(255,255,255,0.76);
-      color: var(--rose-900);
-      padding: 8px 12px;
+      border: 1px solid rgba(140,106,107,0.18);
+      background: rgba(255,255,255,0.78);
+      color: var(--rose);
       border-radius: 999px;
-      font-size: 0.8rem;
+      padding: 8px 12px;
+      font-size: 0.82rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -171,63 +175,64 @@
 
     .btn-table:hover,
     .btn-table.active {
-      background: linear-gradient(135deg, var(--rose-700), var(--rose-500));
+      background: linear-gradient(135deg, #8c6a6b, #b79682);
       color: #fff;
       border-color: transparent;
-      box-shadow: 0 8px 18px rgba(154,94,102,0.18);
+      box-shadow: 0 8px 18px rgba(140,106,107,0.16);
       transform: translateY(-1px);
     }
 
     .results {
       margin-top: 24px;
-      min-height: 128px;
+      min-height: 150px;
     }
 
     .empty {
       text-align: center;
-      color: var(--ink-700);
-      background: rgba(255,255,255,0.5);
-      border: 1px dashed rgba(122,74,82,0.18);
-      border-radius: 18px;
+      line-height: 1.9;
       padding: 32px 18px;
-      line-height: 1.8;
+      background: rgba(255,255,255,0.52);
+      border: 1px dashed rgba(140,106,107,0.18);
+      border-radius: 18px;
+      color: var(--ink-soft);
     }
 
     .card {
-      background: rgba(255,255,255,0.78);
-      border: 1px solid rgba(154,94,102,0.1);
-      border-left: 6px solid var(--rose-700);
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(142,120,104,0.1);
+      border-left: 5px solid var(--gold);
       border-radius: 18px;
       padding: 18px 16px 14px;
-      box-shadow: 0 10px 24px rgba(122,74,82,0.08);
+      box-shadow: 0 12px 22px rgba(76, 58, 55, 0.05);
       margin-bottom: 18px;
     }
 
     .card-header {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 14px;
+      gap: 12px;
       flex-wrap: wrap;
+      margin-bottom: 12px;
     }
 
     .table-tag {
       display: inline-flex;
-      align-items: center;
       justify-content: center;
-      min-width: 60px;
-      height: 28px;
-      border-radius: 999px;
+      align-items: center;
+      min-width: 64px;
+      height: 30px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-soft));
       color: #fff;
-      background: linear-gradient(135deg, var(--gold-500), var(--rose-700));
-      font-size: 0.8rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       padding: 0 12px;
+      box-shadow: 0 6px 14px rgba(185,159,106,0.18);
     }
 
     .table-name {
-      color: var(--rose-900);
+      color: var(--rose);
       font-weight: 700;
       font-size: 1.08rem;
       letter-spacing: 0.04em;
@@ -243,28 +248,28 @@
       display: inline-block;
       padding: 7px 12px;
       border-radius: 999px;
-      background: rgba(245,234,236,0.82);
-      border: 1px solid rgba(154,94,102,0.1);
-      color: var(--ink-700);
+      background: rgba(244,238,233,0.9);
+      border: 1px solid rgba(140,106,107,0.08);
+      color: var(--ink-soft);
       font-size: 0.88rem;
     }
 
     .member-tag.highlight {
-      background: linear-gradient(135deg, var(--rose-700), var(--rose-500));
+      background: linear-gradient(135deg, var(--rose), #b48d7a);
       color: #fff;
       border-color: transparent;
-      box-shadow: 0 8px 18px rgba(154,94,102,0.15);
+      box-shadow: 0 8px 16px rgba(140,106,107,0.12);
       font-weight: 700;
     }
 
-    .footer-note {
-      margin-top: 18px;
+    .footer {
+      margin-top: 20px;
       padding-top: 16px;
-      border-top: 1px dashed var(--line);
+      border-top: 1px solid var(--line);
       text-align: center;
-      color: var(--ink-700);
-      font-size: 0.8rem;
-      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
     }
 
     @media (max-width: 560px) {
@@ -273,12 +278,12 @@
         padding-right: 16px;
       }
 
-      .hero .sub {
-        letter-spacing: 0.06em;
+      .hero::before, .hero::after {
+        display: none;
       }
 
       .table-buttons {
-        max-height: 170px;
+        max-height: 180px;
       }
     }
   </style>
@@ -286,10 +291,11 @@
 <body>
   <div class="container">
     <div class="content">
+      <div class="topbar">WEDDING INVITATION</div>
+
       <div class="hero">
-        <span class="ornament">✦ ✦ ✦</span>
         <h1>婚宴座位查詢</h1>
-        <div class="sub">Wedding Seating Guide</div>
+        <div class="subtitle">Wedding Seating Guide</div>
       </div>
 
       <div class="search-wrap">
@@ -298,8 +304,8 @@
           id="searchInput"
           class="search-input"
           placeholder="請輸入姓名查詢座位，例如：劉家源、魏莉珩"
-          aria-label="搜尋姓名"
           oninput="handleSearch()"
+          aria-label="搜尋姓名"
         />
       </div>
 
@@ -308,7 +314,7 @@
 
       <div class="results" id="resultContainer"></div>
 
-      <div class="footer-note">感謝蒞臨，祝福您與新婚夫妻幸福美滿</div>
+      <div class="footer">感謝蒞臨 祝福幸福美滿</div>
     </div>
   </div>
 
