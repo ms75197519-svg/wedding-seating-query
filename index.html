@@ -25,9 +25,7 @@
       margin: 0;
       min-height: 100%;
       font-family: "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.76), rgba(255,255,255,0.28)),
-        linear-gradient(180deg, #f3eee9 0%, #efe6df 45%, #f6f0ec 100%);
+      background: linear-gradient(180deg, #f3eee9 0%, #efe6df 45%, #f6f0ec 100%);
       color: var(--ink);
     }
 
@@ -62,12 +60,38 @@
     .content {
       position: relative;
       z-index: 1;
-      padding: 34px 26px 22px;
+      padding: 20px 26px 22px;
+    }
+
+    .photo-banner {
+      position: relative;
+      height: 340px;
+      border-radius: 22px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(30, 22, 22, 0.08), rgba(20, 14, 15, 0.18)),
+        url('input_file_0.png') center center / cover no-repeat;
+      box-shadow: 0 18px 28px rgba(76,58,55,0.12);
+      border: 1px solid rgba(255,255,255,0.7);
+    }
+
+    .photo-banner::after {
+      content: "新婚紀念 - Wedding Story";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 16px 20px;
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.42));
+      color: #fff;
+      letter-spacing: 0.12em;
+      font-size: 0.72rem;
+      text-align: center;
     }
 
     .topbar {
       text-align: center;
-      margin-bottom: 18px;
+      margin: 18px 0 10px;
       color: var(--gold);
       letter-spacing: 0.4em;
       font-size: 0.72rem;
@@ -278,6 +302,10 @@
         padding-right: 16px;
       }
 
+      .photo-banner {
+        height: 240px;
+      }
+
       .hero::before, .hero::after {
         display: none;
       }
@@ -291,6 +319,8 @@
 <body>
   <div class="container">
     <div class="content">
+      <div class="photo-banner" aria-label="婚宴照片"></div>
+
       <div class="topbar">WEDDING INVITATION</div>
 
       <div class="hero">
