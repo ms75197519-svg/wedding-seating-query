@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>婚宴座位查詢</title>
+  <title>力賢 & 詩涵 婚宴座位查詢</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Noto+Sans+TC:wght@400;600;700&family=Cormorant+Garamond:wght@500;600;700&family=Playfair+Display:wght@600;700&family=Libre+Baskerville:wght@400;700&display=swap');
 
@@ -69,7 +69,7 @@
     }
 
     .container {
-      width: min(100%, 760px);
+      width: min(100%, 800px);
       background: 
         radial-gradient(ellipse at top, rgba(255,255,255,0.95), rgba(255,255,255,0.88)),
         linear-gradient(135deg, rgba(249, 246, 242, 0.7) 0%, rgba(245, 242, 238, 0.7) 100%);
@@ -98,14 +98,14 @@
     .content {
       position: relative;
       z-index: 1;
-      padding: 28px 26px 28px;
+      padding: 32px 28px;
     }
 
     .invitation-header {
       text-align: center;
-      padding: 20px 0 18px;
+      padding: 24px 0 20px;
       border-bottom: 1px solid var(--line);
-      margin-bottom: 20px;
+      margin-bottom: 22px;
       position: relative;
     }
 
@@ -113,140 +113,202 @@
     .invitation-header::after {
       content: "✦";
       position: absolute;
-      top: 12px;
+      top: 16px;
       color: var(--gold-soft);
-      font-size: 1rem;
-      opacity: 0.7;
+      font-size: 1.2rem;
+      opacity: 0.6;
     }
 
-    .invitation-header::before { left: 22px; }
-    .invitation-header::after { right: 22px; }
+    .invitation-header::before { left: 16px; }
+    .invitation-header::after { right: 16px; }
 
     .couple-names-section {
       text-align: center;
-      padding-top: 4px;
+      padding-top: 6px;
     }
 
     .couple-names {
       font-family: "Cormorant Garamond", "Playfair Display", serif;
-      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
       font-weight: 600;
-      letter-spacing: 0.10em;
+      letter-spacing: 0.12em;
       color: var(--silver-darker);
-      margin: 0;
+      margin: 0 0 8px 0;
       line-height: 1.1;
       text-transform: uppercase;
-      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+      text-shadow: 0 2px 4px rgba(255, 255, 255, 0.6);
     }
 
     .couple-subtitle {
-      font-family: "Noto Sans TC", sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.3em;
+      font-family: "Playfair Display", serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.35em;
       color: var(--gold);
-      margin-top: 10px;
-      font-weight: 700;
+      margin: 0;
+      font-weight: 600;
       text-transform: uppercase;
+      word-spacing: 0.5em;
+    }
+
+    .event-details {
+      text-align: center;
+      margin-top: 16px;
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    .event-details div {
+      color: var(--silver-deep);
+      margin: 6px 0;
+      font-weight: 500;
+    }
+
+    .event-date {
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .event-location {
+      color: var(--rose);
+      font-weight: 600;
+      font-size: 0.9rem;
     }
 
     .topbar {
       text-align: center;
-      margin: 18px 0 10px;
+      margin: 20px 0 12px;
       color: var(--gold);
-      letter-spacing: 0.42em;
-      font-size: 0.68rem;
+      letter-spacing: 0.5em;
+      font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
+      font-family: "Playfair Display", serif;
     }
 
     .hero {
       text-align: center;
-      padding: 12px 0 16px;
+      padding: 14px 0 18px;
       border-bottom: 1px solid var(--line);
       position: relative;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
     }
 
     .hero::before,
     .hero::after {
       content: "◆";
       position: absolute;
-      top: 16px;
+      top: 18px;
       color: var(--gold-soft);
-      font-size: 0.78rem;
-      letter-spacing: 0.15em;
-      opacity: 0.6;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      opacity: 0.5;
     }
 
-    .hero::before { left: 14%; }
-    .hero::after { right: 14%; }
+    .hero::before { left: 12%; }
+    .hero::after { right: 12%; }
 
     .hero h1 {
       margin: 0;
-      font-family: "Playfair Display", "Georgia", serif;
-      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.2rem, 5vw, 3rem);
       font-weight: 700;
-      letter-spacing: 0.1em;
-      color: var(--silver-deeper);
+      letter-spacing: 0.12em;
+      color: var(--silver-darker);
       text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
     }
 
     .hero .subtitle {
-      margin-top: 8px;
+      margin-top: 10px;
       color: var(--gold);
-      letter-spacing: 0.2em;
-      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
+      font-family: "Fredoka", sans-serif;
     }
 
     .search-wrap {
-      margin-top: 24px;
+      margin-top: 26px;
+      position: relative;
+    }
+
+    .search-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(201, 168, 118, 0.2);
+      border-radius: 999px;
+      padding: 7px 8px 7px 18px;
+      box-shadow: inset 0 1px 4px rgba(102, 92, 84, 0.02), 0 1px 3px rgba(255, 255, 255, 0.5);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .search-input-wrap:focus-within {
+      border-color: rgba(201, 168, 118, 0.4);
+      box-shadow: 0 0 0 4px rgba(201, 168, 118, 0.08), inset 0 1px 4px rgba(102, 92, 84, 0.02);
     }
 
     .search-input {
+      flex: 1;
       width: 100%;
-      background: rgba(255,255,255,0.85);
-      border: 1px solid rgba(201, 168, 118, 0.2);
-      border-radius: 999px;
-      padding: 17px 20px;
+      background: transparent;
+      border: none;
+      padding: 12px 0;
       color: var(--ink);
-      font-size: 0.96rem;
+      font-size: 0.98rem;
       outline: none;
-      box-shadow: inset 0 1px 4px rgba(102, 92, 84, 0.02), 0 1px 3px rgba(255, 255, 255, 0.5);
-      transition: all 0.2s ease;
-    }
-
-    .search-input:focus {
-      border-color: rgba(201, 168, 118, 0.4);
-      box-shadow: 0 0 0 4px rgba(201, 168, 118, 0.08), inset 0 1px 4px rgba(102, 92, 84, 0.02);
     }
 
     .search-input::placeholder {
       color: rgba(107, 100, 96, 0.56);
     }
 
+    .search-clear {
+      appearance: none;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(201, 168, 118, 0.12), rgba(201, 168, 118, 0.2));
+      color: var(--silver-darker);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .search-clear:hover {
+      background: linear-gradient(135deg, rgba(201, 168, 118, 0.18), rgba(201, 168, 118, 0.28));
+      transform: translateY(-1px);
+    }
+
     .section-label {
-      margin: 28px 0 14px;
+      margin: 28px 0 16px;
       color: var(--gold);
-      font-size: 0.7rem;
-      letter-spacing: 0.26em;
+      font-size: 0.75rem;
+      letter-spacing: 0.32em;
       font-weight: 700;
       text-transform: uppercase;
       text-align: center;
+      font-family: "Playfair Display", serif;
     }
 
     .table-buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      padding: 12px 8px;
+      gap: 9px;
+      padding: 14px 10px;
       border-radius: 18px;
       background: 
         linear-gradient(135deg, rgba(255,255,255,0.7), rgba(249, 246, 242, 0.6)),
         rgba(247, 244, 240, 0.5);
       border: 1px solid rgba(201, 168, 118, 0.12);
-      max-height: 210px;
+      max-height: 220px;
       overflow-y: auto;
     }
 
@@ -260,174 +322,202 @@
     }
 
     .btn-table {
-      border: 1px solid rgba(201, 168, 118, 0.18);
-      background: rgba(255,255,255,0.85);
+      border: 1.5px solid rgba(201, 168, 118, 0.25);
+      background: 
+        linear-gradient(135deg, rgba(255,255,255,0.9), rgba(249, 246, 242, 0.75));
       color: var(--silver-darker);
       border-radius: 999px;
-      padding: 8px 14px;
-      font-size: 0.78rem;
-      font-weight: 700;
+      padding: 10px 16px;
+      font-size: 0.8rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: all 0.25s ease;
-      letter-spacing: 0.04em;
+      transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: 0.05em;
+      box-shadow: 0 2px 6px rgba(201, 168, 118, 0.06);
     }
 
     .btn-table:hover {
-      background: rgba(255,255,255,0.96);
-      border-color: rgba(201, 168, 118, 0.35);
+      background: 
+        linear-gradient(135deg, rgba(255,255,255,0.98), rgba(249, 246, 242, 0.9));
+      border-color: rgba(201, 168, 118, 0.4);
       color: var(--silver-darker);
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(201, 168, 118, 0.12);
+      box-shadow: 0 6px 16px rgba(201, 168, 118, 0.14);
     }
 
     .btn-table.active {
-      background: linear-gradient(135deg, #9b9288, #c0b3a1);
+      background: linear-gradient(135deg, #b8a89a, #d4c4b0);
       color: #fff;
       border-color: transparent;
-      box-shadow: 0 6px 16px rgba(139, 128, 118, 0.18);
+      box-shadow: 0 8px 20px rgba(139, 128, 118, 0.22);
+      font-weight: 700;
     }
 
     .results {
-      margin-top: 24px;
+      margin-top: 26px;
       min-height: 150px;
     }
 
     .empty {
       text-align: center;
       line-height: 1.9;
-      padding: 32px 18px;
+      padding: 36px 20px;
       background: 
         linear-gradient(135deg, rgba(255,255,255,0.6), rgba(249, 246, 242, 0.5));
       border: 1px dashed rgba(224, 212, 191, 0.35);
       border-radius: 18px;
       color: var(--ink-soft);
-      font-size: 0.92rem;
+      font-size: 0.95rem;
     }
 
     .card {
       background: 
-        linear-gradient(135deg, rgba(255,255,255,0.95), rgba(249, 246, 242, 0.85));
-      border: 1px solid rgba(224, 212, 191, 0.25);
-      border-left: 4px solid var(--gold);
+        linear-gradient(135deg, rgba(255,255,255,0.96), rgba(249, 246, 242, 0.88));
+      border: 1.5px solid rgba(224, 212, 191, 0.3);
+      border-left: 5px solid var(--gold);
       border-radius: 16px;
-      padding: 16px 16px 14px;
+      padding: 18px 18px 16px;
       box-shadow: 
-        0 8px 22px rgba(91, 80, 72, 0.04),
-        inset 0 1px 1px rgba(255, 255, 255, 0.6);
-      margin-bottom: 16px;
-      transition: all 0.2s ease;
+        0 10px 28px rgba(91, 80, 72, 0.06),
+        inset 0 1px 1px rgba(255, 255, 255, 0.7);
+      margin-bottom: 18px;
+      transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201, 168, 118, 0.4), transparent);
     }
 
     .card:hover {
       box-shadow: 
-        0 12px 28px rgba(91, 80, 72, 0.08),
-        inset 0 1px 1px rgba(255, 255, 255, 0.6);
+        0 16px 36px rgba(91, 80, 72, 0.1),
+        inset 0 1px 1px rgba(255, 255, 255, 0.7);
       transform: translateY(-2px);
+      border-color: rgba(224, 212, 191, 0.5);
     }
 
     .card-header {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .table-tag {
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      min-width: 60px;
-      height: 28px;
+      min-width: 68px;
+      height: 32px;
       background: linear-gradient(135deg, var(--gold), var(--gold-soft));
       color: #fff;
       border-radius: 999px;
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
-      padding: 0 10px;
-      box-shadow: 0 5px 12px rgba(201, 168, 118, 0.18);
+      letter-spacing: 0.1em;
+      padding: 0 12px;
+      box-shadow: 
+        0 6px 14px rgba(201, 168, 118, 0.22),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3);
+      text-transform: uppercase;
+      font-family: "Playfair Display", serif;
     }
 
     .table-name {
       color: var(--rose);
       font-weight: 700;
-      font-size: 1.03rem;
-      letter-spacing: 0.04em;
+      font-size: 1.08rem;
+      letter-spacing: 0.05em;
     }
 
     .member-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 7px;
+      gap: 8px;
     }
 
     .member-tag {
       display: inline-block;
-      padding: 6px 11px;
+      padding: 7px 12px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.75);
-      border: 1px solid rgba(201, 168, 118, 0.15);
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(201, 168, 118, 0.18);
       color: var(--ink-soft);
-      font-size: 0.84rem;
-      transition: all 0.2s ease;
+      font-size: 0.85rem;
+      transition: all 0.22s ease;
+      box-shadow: 0 1px 3px rgba(91, 80, 72, 0.02);
     }
 
     .member-tag:hover {
-      background: rgba(255, 255, 255, 0.95);
-      border-color: rgba(201, 168, 118, 0.3);
+      background: rgba(255, 255, 255, 0.96);
+      border-color: rgba(201, 168, 118, 0.35);
+      transform: translateY(-1px);
     }
 
     .member-tag.highlight {
       background: linear-gradient(135deg, #b8aaa1, #8b7d76);
       color: #fff;
       border-color: transparent;
-      box-shadow: 0 6px 14px rgba(139, 125, 118, 0.16);
+      box-shadow: 0 6px 16px rgba(139, 125, 118, 0.18);
       font-weight: 600;
     }
 
     .footer {
-      margin-top: 24px;
-      padding-top: 16px;
+      margin-top: 28px;
+      padding-top: 18px;
       border-top: 1px solid var(--line);
       text-align: center;
       color: var(--ink-soft);
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
+      font-size: 0.82rem;
+      letter-spacing: 0.15em;
       font-weight: 500;
     }
 
     .footer::before {
       content: "❖ ";
       color: var(--gold);
-      margin-right: 4px;
+      margin-right: 6px;
     }
 
     .footer::after {
       content: " ❖";
       color: var(--gold);
-      margin-left: 4px;
+      margin-left: 6px;
     }
 
     @media (max-width: 560px) {
       .content {
-        padding-left: 16px;
-        padding-right: 16px;
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding-left: 18px;
+        padding-right: 18px;
+        padding-top: 24px;
+        padding-bottom: 24px;
+      }
+
+      .container {
+        width: min(100%, 100%);
       }
 
       .invitation-header {
-        padding: 16px 0 14px;
-        margin-bottom: 18px;
+        padding: 18px 0 14px;
+        margin-bottom: 16px;
       }
 
       .couple-names {
+        font-size: 2rem;
         letter-spacing: 0.08em;
       }
 
       .hero h1 {
-        font-size: 1.7rem;
+        font-size: 1.8rem;
       }
 
       .hero::before, .hero::after {
@@ -436,8 +526,8 @@
 
       .invitation-header::before,
       .invitation-header::after {
-        font-size: 0.9rem;
-        top: 10px;
+        font-size: 1rem;
+        top: 12px;
       }
 
       .table-buttons {
@@ -446,7 +536,15 @@
 
       .member-tag {
         font-size: 0.8rem;
-        padding: 5px 9px;
+        padding: 5px 10px;
+      }
+
+      .event-details {
+        font-size: 0.8rem;
+      }
+
+      .search-input-wrap {
+        padding-left: 14px;
       }
     }
   </style>
@@ -457,29 +555,36 @@
       <div class="invitation-header">
         <div class="couple-names-section">
           <p class="couple-names">力賢 &amp; 詩涵</p>
-          <div class="couple-subtitle">WEDDING</div>
+          <div class="couple-subtitle">Wedding Celebration</div>
         </div>
       </div>
 
-      <div class="topbar">Wedding Invitation</div>
+      <div class="event-details">
+        <div class="event-date">2026 年 10 月 10 日 (星期六)</div>
+        <div class="event-location">大直典華三樓 閣樓</div>
+      </div>
+
+      <div class="topbar">Seating Arrangement Guide</div>
 
       <div class="hero">
         <h1>婚宴座位查詢</h1>
-        <div class="subtitle">Wedding Seating Guide</div>
+        <div class="subtitle">Find Your Table</div>
       </div>
 
       <div class="search-wrap">
-        <input
-          type="text"
-          id="searchInput"
-          class="search-input"
-          placeholder="請輸入賓客姓名查詢座位"
-          oninput="handleSearch()"
-          aria-label="搜尋姓名"
-        />
+        <div class="search-input-wrap">
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="輸入姓名查詢座位 / Enter Name to Find Your Seat"
+            aria-label="搜尋姓名"
+          />
+          <button type="button" id="clearSearchBtn" class="search-clear">清除</button>
+        </div>
       </div>
 
-      <div class="section-label">快速選擇桌號</div>
+      <div class="section-label">快速選擇 · Quick Select</div>
       <div class="table-buttons" id="tableButtons"></div>
 
       <div class="results" id="resultContainer"></div>
@@ -522,6 +627,7 @@
     ];
 
     const searchInput = document.getElementById('searchInput');
+    const clearSearchBtn = document.getElementById('clearSearchBtn');
     const tableButtons = document.getElementById('tableButtons');
     const resultContainer = document.getElementById('resultContainer');
 
@@ -568,7 +674,7 @@
       setActiveButton(null);
 
       if (!keyword) {
-        resultContainer.innerHTML = '<div class="empty">請輸入姓名關鍵字查詢座位，或點擊上方桌號快速瀏覽。</div>';
+        resultContainer.innerHTML = '<div class="empty">請輸入姓名查詢 / Enter your name to find your seat</div>';
         return;
       }
 
@@ -577,7 +683,7 @@
       );
 
       if (matchedTables.length === 0) {
-        resultContainer.innerHTML = '<div class="empty">查無此賓客資料，請確認輸入是否正確，或聯繫現場招待人員。</div>';
+        resultContainer.innerHTML = '<div class="empty">查無此賓客資料 / Guest not found. Please check the spelling or contact us at the reception.</div>';
         return;
       }
 
@@ -597,8 +703,15 @@
       `).join('');
     }
 
+    searchInput.addEventListener('input', handleSearch);
+    clearSearchBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      handleSearch();
+      searchInput.focus();
+    });
+
     initButtons();
-    resultContainer.innerHTML = '<div class="empty">請輸入姓名關鍵字查詢座位，或點擊上方桌號快速瀏覽。</div>';
+    resultContainer.innerHTML = '<div class="empty">請輸入姓名查詢 / Enter your name to find your seat</div>';
   </script>
 </body>
 </html>
